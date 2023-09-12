@@ -1,0 +1,1 @@
+vr-screen-cap.exe --config-file=vr-screen-config.json

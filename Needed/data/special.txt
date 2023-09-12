@@ -1,0 +1,147 @@
+Vanguard.exe
+AC3SP.exe
+EN\arx.exe
+TQ.exe
+Titan Quest.exe
+TQIT.exe
+generals.exe
+To the Moon\To the Moon.exe
+en_us\client\bin\pc\wwzRetailEgs.exe
+_retail_\x86_64\Warcraft III.exe
+Core\Platform\Binaries\Win64\Platform-Win64-Shipping.exe
+boot\ffxivboot64.exe
+ROGUE\Rogue Squadron.exe
+Space Siege\SpaceSiege.exe
+client_exe\shattered_horizon.exe
+Warlords\Civ4Warlords.exe
+Beyond the Sword\Civ4BeyondSword.exe
+data\base\bin\Settlers6R.exe
+Base\Bin\Settlers7R.exe
+RDR2.exe
+exe64\wb.exe
+Builds\Release\Bioshock.exe
+Builds\Binaries\Bioshock2.exe
+Build\Final\BioshockHD.exe
+Build\Final\Bioshock2HD.exe
+white_data\prog\win\bin\ffxiiiimg.exe
+alba_data\prog\win\bin\ffxiii2img.exe
+Client\bin64\Aion.bin
+WindowsNoEditor\CaffeineGame\Binaries\Win64\CaffeineGame.exe
+WindowsNoEditor\ctts\Binaries\Win64\ctts-Win64-Shipping.exe
+WindowsNoEditor\ConanSandbox\Binaries\Win64\ConanSandboxEgs.exe
+runtime\media\YakuzaLikeADragon.exe
+00_game\target_origin\ex\WILD HEARTS.exe
+Engine\Binaries\Win64\UE4-Win64-Shipping.exe
+newRoot\UnrailedGameEpic.exe
+x64\Transistor.exe
+JcmpLauncher.exe
+Sporebin\SporeApp.exe
+Apps\SimCity 4.exe
+SimCity\SimCity.exe
+RiME\SirenGame\Binaries\Win64\RiME.exe
+Rayman Origins.exe
+Game\Alice2\Binaries\Win32\AliceMadnessReturns.exe
+game\bin\win64\deskjob.exe
+game\DarkSoulsII.exe
+game\DarkSoulsIII.exe
+Game\Bin\TS3.exe
+Game\Bin\TS4_x64.exe
+system\EiB.exe
+system\bia.exe
+Bin32\Crysis.exe
+Bin32\Crysis2.exe
+Bin32\Crysis3.exe
+Bin64\CrysisRemastered.exe
+Bin64\Crysis2Remastered.exe
+Bin64\Crysis3Remastered.exe
+DATA\DARKSOULS.exe
+nativePC\Binaries\ShippingPC-SkyGame.exe
+system\RedOrchestra.exe
+retail\DXB.exe
+system\DeusEx.exe
+system\dx2.exe
+retail\DXMD.exe
+Revision\System\Revision.exe
+Engine\Binaries\Win64\DiabloImmortal.exe
+game\bin\win64\dota2.exe
+bin_ship\daorigins.exe
+bin_ship\DragonAge2.exe
+executable\DuckTales.exe
+system\DukeForever.exe
+ph\work\bin\x64\DyingLightGame_x64_rwdi.exe
+game\eldenring.exe
+system\ELEX.exe
+Bin32\FarCry.exe
+x64\FarmingSimulator2022Game.exe
+game\fifa13.exe
+x64\FF9.exe
+WIN\fftype0hd.exe
+x64\FFXII_TZA.exe
+Gladio and Glory\Gladio and Glory.exe
+system\Gothic2.exe
+WINO\Grand Theft Auto.exe
+GTAIV\GTAIV.exe
+x86\GOME.exe
+retail\HITMAN.exe
+retail\HITMAN2.exe
+retail\HITMAN3.exe
+win32\Reuben.exe
+build\Horace.exe
+src\System\IAmAlive_game.exe
+EN\Imperialism.exe
+DiscContentPCG\Injustice.exe
+runtime\media\Judgment.exe
+runtime\media\LostJudgment.exe
+System\KillingFloor.exe
+pc\mafia2.exe
+pc\Mafia II Definitive Edition.exe
+retail\gotg.exe
+Max Payne 3\MaxPayne3.exe
+UnrealEngine3\Binaries\MOHA.exe
+x64\ShadowOfMordor.exe
+x64\ShadowOfWar.exe
+DiscContentPC\MKKE.exe
+Bin64\NewWorld.exe
+Bin32\Nexuiz.exe
+Build\release\OrcsMustDie.exe
+Build\release\OrcsMustDie2.exe
+_retail_\Overwatch.exe
+win\PillarsOfEternity.exe
+system\Postal2.exe
+Binaries\Danielle\x64\Release\Prey.exe
+PrinceOfPersia_Launcher.exe
+bin32\bio4.exe
+dx11\QuantumBreak.exe
+Bin64\Ryse.exe
+datapack\trialsFMX.exe
+datapack\trials_fusion.exe
+_retail_\cod.exe
+desktop\WindowsNoEditor\RagdollKanojo_C\Binaries\Win64\RagdollKanojo_C-Win64-Shipping.exe
+system\RavenShield.exe
+win64\abbeycore_win32_steam.exe
+system\risen2.exe
+system\risen3.exe
+system\rune.exe
+system\sacred2.exe
+system\SpaceEngine.exe
+GameData\BattlefrontII.exe
+GameData\Battlefront.exe
+GameData\jk2sp.exe
+x86_64\StarCraft.exe
+pc\main\Binary\SSZ.exe
+system\witcher.exe
+system\T3Main.exe
+system\splintercell.exe
+src\SYSTEM\Blacklist_DX11_game.exe
+system\splintercell3.exe
+src\system\conviction_game.exe
+System\SplinterCell4.exe
+System\SCDA_online.exe
+datapack\trialsblooddragon.exe
+Build\WL2.exe
+WinEnv\WinEnv.exe
+System\XCom.exe
+media\YakuzaKiwami.exe
+media\Yakuza0.exe
+Bin64\Gujian3.exe
+aom\AOM_Release_Final.exe
