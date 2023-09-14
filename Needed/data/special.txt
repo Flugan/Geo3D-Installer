@@ -51,6 +51,7 @@ system\bia.exe
 Bin32\Crysis.exe
 Bin32\Crysis2.exe
 Bin32\Crysis3.exe
+Bin64\Crysis64.exe
 Bin64\CrysisRemastered.exe
 Bin64\Crysis2Remastered.exe
 Bin64\Crysis3Remastered.exe
