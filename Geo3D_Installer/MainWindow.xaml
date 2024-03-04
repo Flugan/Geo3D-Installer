@@ -7,29 +7,51 @@
         mc:Ignorable="d"
         Title="Install Geo3D - ©2023 Ulf Jälmbrant" Height="800" Width="1100" MinHeight="325">
     <Grid Initialized="Grid_Initialized">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Margin="307,16,0,0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" >           
-            <Hyperlink NavigateUri="http://flugan.net" RequestNavigate="Hyperlink_RequestNavigate">
-                Flugan.net
+        <TextBlock Margin="307,10,0,0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" >           
+            <Hyperlink NavigateUri="https://discord.gg/kk79BmwdX5" RequestNavigate="Hyperlink_RequestNavigate">
+                Discord
             </Hyperlink>
         </TextBlock>
-        <ListBox x:Name="gameListBox" HorizontalAlignment="Left" Margin="10,51,0,31" Width="500" SelectionChanged="gameListBox_SelectionChanged" ToolTipService.ToolTip="Game list"/>
-        <ListBox x:Name="geo3DBox" Margin="0,51,10,31" HorizontalAlignment="Right" Width="500" ToolTipService.ToolTip="Games with Geo3D"/>
+        <TextBlock Margin="450,10,0,0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" >           
+            <Hyperlink NavigateUri="https://patreon.com/Flugan" RequestNavigate="Hyperlink_RequestNavigate">
+                Patreon
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock Margin="600,10,0,0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Hyperlink NavigateUri="https://github.com/Flugan/Geo3D-Installer/releases" RequestNavigate="Hyperlink_RequestNavigate">
+                GitHub
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock Margin="700,10,0,0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Hyperlink NavigateUri="https://www.paypal.com/paypalme/UlfJ" RequestNavigate="Hyperlink_RequestNavigate">
+                PayPal
+            </Hyperlink>
+        </TextBlock>
+
+        
+        <ListBox x:Name="gameListBox" HorizontalAlignment="Left" Margin="10,51,0,31" Width="500" SelectionChanged="gameListBox_SelectionChanged" ToolTipService.ToolTip="Game list" Grid.RowSpan="2"/>
+        <ListBox x:Name="geo3DBox" Margin="0,51,10,31" HorizontalAlignment="Right" Width="500" ToolTipService.ToolTip="Games with Geo3D" Grid.RowSpan="2"/>
         <TextBox x:Name="Search" HorizontalAlignment="Left" Height="23" Margin="60,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" TextChanged="Search_TextChanged" ToolTipService.ToolTip="Search within games/on the left"/>
-        <Label x:Name="gameCount" Content="Total Count: 0" HorizontalAlignment="Left" Margin="10,0,0,5" VerticalAlignment="Bottom" Width="123" RenderTransformOrigin="0.504,-1.846"/>
+        <Label x:Name="gameCount" Content="Total Count: 0" HorizontalAlignment="Left" Margin="10,0,0,5" VerticalAlignment="Bottom" Width="123" RenderTransformOrigin="0.504,-1.846" Grid.Row="1"/>
         <Button x:Name="install" Content="Install" HorizontalAlignment="Left" Margin="517,138,0,0" VerticalAlignment="Top" Width="54" Click="install_Click" ToolTipService.ToolTip="Install Geo3D to the selected game on the left" Height="39"/>
         <Button x:Name="uninstall" Content="Uninstall" HorizontalAlignment="Left" Margin="517,182,0,0" VerticalAlignment="Top" Width="54" Click="uninstall_Click" ToolTipService.ToolTip="Uninstall Geo3D to the selected game on the right" Height="36"/>
         <Label Content="Search" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.216,-0.282"/>
-        <Label Content="Geo3D is intended for singleplayer games only and may cause bans in multiplayer games." HorizontalAlignment="Left" Margin="590,0,0,0" VerticalAlignment="Bottom"/>
+        <Label Content="Geo3D is intended for singleplayer games only and may cause bans in multiplayer games." HorizontalAlignment="Left" Margin="590,0,0,0" VerticalAlignment="Bottom" Grid.Row="1"/>
         <Button x:Name="popup" Content="Pick" HorizontalAlignment="Left" Margin="517,207,0,0" VerticalAlignment="Top" Width="54" Height="41" Click="popup_Click" ToolTipService.ToolTip="Filter out uninstallable games lacking exe path" Visibility="Hidden"/>
         <Button x:Name="exeButton" Content="Exe" HorizontalAlignment="Left" Margin="521,295,0,0" VerticalAlignment="Top" Width="47" Height="40" Click="exeButton_Click" ToolTipService.ToolTip="Show exe game path, note very slow!"/>
         <Button x:Name="pathButton" Content="Path" HorizontalAlignment="Left" Margin="521,352,0,0" VerticalAlignment="Top" Width="46" Height="40" Click="pathButton_Click" ToolTipService.ToolTip="Show game path"/>
         <Button x:Name="DX9" Content="DX9" HorizontalAlignment="Left" Margin="521,462,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="DX9_Click" ToolTipService.ToolTip="For playing in DX9 mode"/>
         <Button x:Name="DX10" Content="DX10+" HorizontalAlignment="Left" Margin="521,502,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="DX10_Click" ToolTipService.ToolTip="For playing everything else"/>
-        <Button x:Name="DX12" Content="DX12" HorizontalAlignment="Left" Margin="521,542,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="DX12_Click" ToolTipService.ToolTip="Very few DX12 games require this!"/>
+        <Button x:Name="DX12" Content="DX12" HorizontalAlignment="Left" Margin="521,542,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="DX12_Click" ToolTipService.ToolTip="Very few DX12 games require this!" Grid.RowSpan="2"/>
         <CheckBox x:Name="xSR" Content="SR" HorizontalAlignment="Left" Margin="525,118,0,0" VerticalAlignment="Top" ToolTipService.ToolTip="For playing 64-bit games on Simulated Reality monitors, alpha!"/>
-        <Button x:Name="Refresh" Content="Refresh" HorizontalAlignment="Left" Margin="521,583,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="Refresh_Click" ToolTipService.ToolTip="Refresh all Geo3D games"/>
+        <CheckBox x:Name="xVR" Content="VR" HorizontalAlignment="Left" Margin="525,95,0,0" VerticalAlignment="Top" ToolTipService.ToolTip="For playing games in Virtual Reality using 3D-Screen-Cap"/>
+        <Button x:Name="Refresh" Content="Refresh" HorizontalAlignment="Left" Margin="521,23,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="Refresh_Click" ToolTipService.ToolTip="Refresh all Geo3D games" Grid.Row="1"/>
     </Grid>
 </Window>

@@ -71,6 +71,7 @@ executable\DuckTales.exe
 system\DukeForever.exe
 ph\work\bin\x64\DyingLightGame_x64_rwdi.exe
 game\eldenring.exe
+game\armoredcore6.exe
 system\ELEX.exe
 Bin32\FarCry.exe
 x64\FarmingSimulator2022Game.exe
