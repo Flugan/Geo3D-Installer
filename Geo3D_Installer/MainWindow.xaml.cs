@@ -176,7 +176,7 @@ namespace Geo3D_Installer
                     }
                     if (found)
                     {
-                        System.IO.File.Copy("srReshade Alpha\\srReshade_v0.0.0.addon64", installDir + "\\srReshade_v0.0.0.addon64", true);
+                        System.IO.File.Copy("srReshade Alpha\\srReshade_v0.1.0.addon64", installDir + "\\srReshade_v0.1.0.addon64", true);
                         System.IO.File.Copy(folder + "\\DimencoWeaving.dll", installDir + "\\DimencoWeaving.dll", true);
                         System.IO.File.Copy(folder + "\\Glog.dll", installDir + "\\Glog.dll", true);
                         System.IO.File.Copy(folder + "\\Opencv_world343.dll", installDir + "\\Opencv_world343.dll", true);
