@@ -204,8 +204,7 @@ namespace Geo3D_Installer
                 if (xVR.IsChecked == true)
                 {
                     System.IO.File.Copy("VR\\VRExport\\3DToElse.fx", installDir + "\\3DToElse.fx", true);
-                    System.IO.File.Copy("VR\\VRExport\\ReShade.ini", installDir + "\\ReShade.ini", true);
-                    if (currentGame.bits == "x86")
+                     if (currentGame.bits == "x86")
                     {
                         System.IO.File.Copy("VR\\VRExport\\VRExport.addon32", installDir + "\\VRExport.addon32", true);
                     }
