@@ -200,7 +200,8 @@ namespace Geo3D_Installer
             {
                 System.IO.File.Copy("ReShade\\3DToElse.fx", installDir + "\\3DToElse.fx", true);
                 System.IO.File.Copy("ReShade\\ReShadePreset.ini", installDir + "\\ReShadePreset.ini", true);
-                System.IO.File.Copy("ReShade\\ReShade.ini", installDir + "\\ReShade.ini", true);
+                if (!System.IO.File.Exists(installDir + "\\ReShade.ini"))
+                    System.IO.File.Copy("ReShade\\ReShade.ini", installDir + "\\ReShade.ini", true);
                 if (xVR.IsChecked == true)
                 {
                     System.IO.File.Copy("VR\\VRExport\\3DToElse.fx", installDir + "\\3DToElse.fx", true);
@@ -324,6 +325,10 @@ namespace Geo3D_Installer
             System.IO.File.Delete(combinedPath + "\\d3d12.dll");
             System.IO.File.Delete(combinedPath + "\\dxgi.dll");
 
+            System.IO.File.Delete(combinedPath + "\\ReShade.log");
+            System.IO.File.Delete(combinedPath + "\\ReShade.log2");
+            System.IO.File.Delete(combinedPath + "\\ReShadePreset.ini");
+
             var fi = new FileInfo(combinedPath + "\\dxcompiler.dll");
             if (fi.Exists && fi.Length == 17107352)
             {
@@ -343,12 +348,6 @@ namespace Geo3D_Installer
             System.IO.File.Delete(combinedPath + "\\SimulatedRealityDirectX.dll");
             System.IO.File.Delete(combinedPath + "\\SimulatedRealityDisplays.dll");
             System.IO.File.Delete(combinedPath + "\\SimulatedRealityFacetrackers.dll");
-
-            var reshade = Directory.EnumerateFiles(combinedPath, "reshade*");
-            foreach (var file in reshade)
-            {
-                System.IO.File.Delete(file);
-            }
 
             gameGeo3D.Clear();
             foreach (var game in gameList)

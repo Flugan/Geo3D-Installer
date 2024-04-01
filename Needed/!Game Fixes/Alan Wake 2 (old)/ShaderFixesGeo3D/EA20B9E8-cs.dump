@@ -1,0 +1,391 @@
+;
+; Input signature:
+;
+; Name                 Index   Mask Register SysValue  Format   Used
+; -------------------- ----- ------ -------- -------- ------- ------
+; no parameters
+;
+; Output signature:
+;
+; Name                 Index   Mask Register SysValue  Format   Used
+; -------------------- ----- ------ -------- -------- ------- ------
+; no parameters
+; shader debug name: 3e87bb1dd5261cf316a5ee1c62e440eb.pdb
+; shader hash: 3e87bb1dd5261cf316a5ee1c62e440eb
+;
+; Pipeline Runtime Information: 
+;
+; Compute Shader
+; NumThreads=(8,8,1)
+;
+;
+; Buffer Definitions:
+;
+; cbuffer CS_GenerateMips
+; {
+;
+;   struct CS_GenerateMips
+;   {
+;
+;       float4 g_vInvTex_TopMip_NumArraySlice;        ; Offset:    0
+;   
+;   } CS_GenerateMips;                                ; Offset:    0 Size:    16
+;
+; }
+;
+;
+; Resource Bindings:
+;
+; Name                                 Type  Format         Dim      ID      HLSL Bind  Count
+; ------------------------------ ---------- ------- ----------- ------- -------------- ------
+; CS_GenerateMips                   cbuffer      NA          NA     CB0            cb0     1
+; g_sLinearMipLinearClamp           sampler      NA          NA      S0     s11,space1     1
+; g_texMipsIn                       texture     f32          2d      T0             t0     1
+; g_texMipsOut_0                        UAV     f32          2d      U0             u0     1
+; g_texMipsOut_1                        UAV     f32          2d      U1             u1     1
+;
+target datalayout = "e-m:e-p:32:32-i1:32-i8:8-i16:16-i32:32-i64:64-f16:16-f32:32-f64:64-n8:16:32:64"
+target triple = "dxil-ms-dx"
+
+%dx.types.Handle = type { i8* }
+%dx.types.CBufRet.f32 = type { float, float, float, float }
+%dx.types.ResRet.f32 = type { float, float, float, float, i32 }
+%"class.Texture2D<vector<float, 4> >" = type { <4 x float>, %"class.Texture2D<vector<float, 4> >::mips_type" }
+%"class.Texture2D<vector<float, 4> >::mips_type" = type { i32 }
+%"class.RWTexture2D<vector<float, 4> >" = type { <4 x float> }
+%CS_GenerateMips = type { <4 x float> }
+%struct.SamplerState = type { i32 }
+
+@"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim" = addrspace(3) global [256 x float] undef, align 4
+
+define void @GenerateMips() {
+  %1 = call %dx.types.Handle @dx.op.createHandle(i32 57, i8 1, i32 1, i32 1, i1 false)  ; CreateHandle(resourceClass,rangeId,index,nonUniformIndex)
+  %2 = call %dx.types.Handle @dx.op.createHandle(i32 57, i8 1, i32 0, i32 0, i1 false)  ; CreateHandle(resourceClass,rangeId,index,nonUniformIndex)
+  %3 = call %dx.types.Handle @dx.op.createHandle(i32 57, i8 0, i32 0, i32 0, i1 false)  ; CreateHandle(resourceClass,rangeId,index,nonUniformIndex)
+  %4 = call %dx.types.Handle @dx.op.createHandle(i32 57, i8 3, i32 0, i32 11, i1 false)  ; CreateHandle(resourceClass,rangeId,index,nonUniformIndex)
+  %5 = call %dx.types.Handle @dx.op.createHandle(i32 57, i8 2, i32 0, i32 0, i1 false)  ; CreateHandle(resourceClass,rangeId,index,nonUniformIndex)
+  %6 = call i32 @dx.op.threadId.i32(i32 93, i32 0)  ; ThreadId(component)
+  %7 = call i32 @dx.op.threadId.i32(i32 93, i32 1)  ; ThreadId(component)
+  %8 = call i32 @dx.op.threadIdInGroup.i32(i32 95, i32 0)  ; ThreadIdInGroup(component)
+  %9 = call i32 @dx.op.threadIdInGroup.i32(i32 95, i32 1)  ; ThreadIdInGroup(component)
+  %10 = call %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32 59, %dx.types.Handle %5, i32 0)  ; CBufferLoadLegacy(handle,regIndex)
+  %11 = extractvalue %dx.types.CBufRet.f32 %10, 2
+  %12 = uitofp i32 %6 to float
+  %13 = uitofp i32 %7 to float
+  %14 = fadd fast float %12, 5.000000e-01
+  %15 = fadd fast float %13, 5.000000e-01
+  %16 = extractvalue %dx.types.CBufRet.f32 %10, 0
+  %17 = extractvalue %dx.types.CBufRet.f32 %10, 1
+  %18 = fmul fast float %16, %14
+  %19 = fmul fast float %17, %15
+  %20 = call %dx.types.ResRet.f32 @dx.op.sampleLevel.f32(i32 62, %dx.types.Handle %3, %dx.types.Handle %4, float %18, float %19, float undef, float undef, i32 0, i32 0, i32 undef, float %11)  ; SampleLevel(srv,sampler,coord0,coord1,coord2,coord3,offset0,offset1,offset2,LOD)
+  %21 = extractvalue %dx.types.ResRet.f32 %20, 0
+  %22 = extractvalue %dx.types.ResRet.f32 %20, 1
+  %23 = extractvalue %dx.types.ResRet.f32 %20, 2
+  %24 = extractvalue %dx.types.ResRet.f32 %20, 3
+  %25 = fcmp fast ugt float %21, 0x3F69A5C380000000
+  br i1 %25, label %26, label %32, !dx.controlflow.hints !18
+
+; <label>:26                                      ; preds = %0
+  %27 = call float @dx.op.unary.f32(i32 23, float %21)  ; Log(value)
+  %28 = fmul fast float %27, 0x3FDAAAAAA0000000
+  %29 = call float @dx.op.unary.f32(i32 21, float %28)  ; Exp(value)
+  %30 = fmul fast float %29, 0x3FF0E147A0000000
+  %31 = fadd fast float %30, 0xBFAC28F5C0000000
+  br label %34
+
+; <label>:32                                      ; preds = %0
+  %33 = fmul fast float %21, 0x4029D70A40000000
+  br label %34
+
+; <label>:34                                      ; preds = %32, %26
+  %35 = phi float [ %33, %32 ], [ %31, %26 ]
+  %36 = fcmp fast ugt float %22, 0x3F69A5C380000000
+  br i1 %36, label %37, label %43, !dx.controlflow.hints !18
+
+; <label>:37                                      ; preds = %34
+  %38 = call float @dx.op.unary.f32(i32 23, float %22)  ; Log(value)
+  %39 = fmul fast float %38, 0x3FDAAAAAA0000000
+  %40 = call float @dx.op.unary.f32(i32 21, float %39)  ; Exp(value)
+  %41 = fmul fast float %40, 0x3FF0E147A0000000
+  %42 = fadd fast float %41, 0xBFAC28F5C0000000
+  br label %45
+
+; <label>:43                                      ; preds = %34
+  %44 = fmul fast float %22, 0x4029D70A40000000
+  br label %45
+
+; <label>:45                                      ; preds = %43, %37
+  %46 = phi float [ %44, %43 ], [ %42, %37 ]
+  %47 = fcmp fast ugt float %23, 0x3F69A5C380000000
+  br i1 %47, label %48, label %54, !dx.controlflow.hints !18
+
+; <label>:48                                      ; preds = %45
+  %49 = call float @dx.op.unary.f32(i32 23, float %23)  ; Log(value)
+  %50 = fmul fast float %49, 0x3FDAAAAAA0000000
+  %51 = call float @dx.op.unary.f32(i32 21, float %50)  ; Exp(value)
+  %52 = fmul fast float %51, 0x3FF0E147A0000000
+  %53 = fadd fast float %52, 0xBFAC28F5C0000000
+  br label %56
+
+; <label>:54                                      ; preds = %45
+  %55 = fmul fast float %23, 0x4029D70A40000000
+  br label %56
+
+; <label>:56                                      ; preds = %54, %48
+  %57 = phi float [ %55, %54 ], [ %53, %48 ]
+  call void @dx.op.textureStore.f32(i32 67, %dx.types.Handle %2, i32 %6, i32 %7, i32 undef, float %35, float %46, float %57, float %24, i8 15)  ; TextureStore(srv,coord0,coord1,coord2,value0,value1,value2,value3,mask)
+  %58 = mul i32 %9, 8
+  %59 = add i32 %8, %58
+  %60 = mul i32 %59, 4
+  %61 = add i32 0, %60
+  %62 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %61
+  store float %21, float addrspace(3)* %62, align 4
+  %63 = mul i32 %9, 8
+  %64 = add i32 %8, %63
+  %65 = mul i32 %64, 4
+  %66 = add i32 1, %65
+  %67 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %66
+  store float %22, float addrspace(3)* %67, align 4
+  %68 = mul i32 %9, 8
+  %69 = add i32 %8, %68
+  %70 = mul i32 %69, 4
+  %71 = add i32 2, %70
+  %72 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %71
+  store float %23, float addrspace(3)* %72, align 4
+  %73 = mul i32 %9, 8
+  %74 = add i32 %8, %73
+  %75 = mul i32 %74, 4
+  %76 = add i32 3, %75
+  %77 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %76
+  store float %24, float addrspace(3)* %77, align 4
+  call void @dx.op.barrier(i32 80, i32 9)  ; Barrier(barrierMode)
+  %78 = and i32 %8, -2
+  %79 = and i32 %9, -2
+  %80 = mul i32 %79, 8
+  %81 = add i32 %78, %80
+  %82 = mul i32 %81, 4
+  %83 = add i32 0, %82
+  %84 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %83
+  %85 = load float, float addrspace(3)* %84, align 4
+  %86 = mul i32 %79, 8
+  %87 = add i32 %78, %86
+  %88 = mul i32 %87, 4
+  %89 = add i32 1, %88
+  %90 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %89
+  %91 = load float, float addrspace(3)* %90, align 4
+  %92 = mul i32 %79, 8
+  %93 = add i32 %78, %92
+  %94 = mul i32 %93, 4
+  %95 = add i32 2, %94
+  %96 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %95
+  %97 = load float, float addrspace(3)* %96, align 4
+  %98 = mul i32 %79, 8
+  %99 = add i32 %78, %98
+  %100 = mul i32 %99, 4
+  %101 = add i32 3, %100
+  %102 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %101
+  %103 = load float, float addrspace(3)* %102, align 4
+  %104 = or i32 %9, 1
+  %105 = mul i32 %104, 8
+  %106 = add i32 %78, %105
+  %107 = mul i32 %106, 4
+  %108 = add i32 0, %107
+  %109 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %108
+  %110 = load float, float addrspace(3)* %109, align 4
+  %111 = mul i32 %104, 8
+  %112 = add i32 %78, %111
+  %113 = mul i32 %112, 4
+  %114 = add i32 1, %113
+  %115 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %114
+  %116 = load float, float addrspace(3)* %115, align 4
+  %117 = mul i32 %104, 8
+  %118 = add i32 %78, %117
+  %119 = mul i32 %118, 4
+  %120 = add i32 2, %119
+  %121 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %120
+  %122 = load float, float addrspace(3)* %121, align 4
+  %123 = mul i32 %104, 8
+  %124 = add i32 %78, %123
+  %125 = mul i32 %124, 4
+  %126 = add i32 3, %125
+  %127 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %126
+  %128 = load float, float addrspace(3)* %127, align 4
+  %129 = fadd fast float %110, %85
+  %130 = fadd fast float %116, %91
+  %131 = fadd fast float %122, %97
+  %132 = fadd fast float %128, %103
+  %133 = or i32 %8, 1
+  %134 = mul i32 %79, 8
+  %135 = add i32 %133, %134
+  %136 = mul i32 %135, 4
+  %137 = add i32 0, %136
+  %138 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %137
+  %139 = load float, float addrspace(3)* %138, align 4
+  %140 = mul i32 %79, 8
+  %141 = add i32 %133, %140
+  %142 = mul i32 %141, 4
+  %143 = add i32 1, %142
+  %144 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %143
+  %145 = load float, float addrspace(3)* %144, align 4
+  %146 = mul i32 %79, 8
+  %147 = add i32 %133, %146
+  %148 = mul i32 %147, 4
+  %149 = add i32 2, %148
+  %150 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %149
+  %151 = load float, float addrspace(3)* %150, align 4
+  %152 = mul i32 %79, 8
+  %153 = add i32 %133, %152
+  %154 = mul i32 %153, 4
+  %155 = add i32 3, %154
+  %156 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %155
+  %157 = load float, float addrspace(3)* %156, align 4
+  %158 = fadd fast float %129, %139
+  %159 = fadd fast float %130, %145
+  %160 = fadd fast float %131, %151
+  %161 = fadd fast float %132, %157
+  %162 = mul i32 %104, 8
+  %163 = add i32 %133, %162
+  %164 = mul i32 %163, 4
+  %165 = add i32 0, %164
+  %166 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %165
+  %167 = load float, float addrspace(3)* %166, align 4
+  %168 = mul i32 %104, 8
+  %169 = add i32 %133, %168
+  %170 = mul i32 %169, 4
+  %171 = add i32 1, %170
+  %172 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %171
+  %173 = load float, float addrspace(3)* %172, align 4
+  %174 = mul i32 %104, 8
+  %175 = add i32 %133, %174
+  %176 = mul i32 %175, 4
+  %177 = add i32 2, %176
+  %178 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %177
+  %179 = load float, float addrspace(3)* %178, align 4
+  %180 = mul i32 %104, 8
+  %181 = add i32 %133, %180
+  %182 = mul i32 %181, 4
+  %183 = add i32 3, %182
+  %184 = getelementptr [256 x float], [256 x float] addrspace(3)* @"\01?vShare@@3PAY07$$CAV?$vector@M$03@@A.v.1dim", i32 0, i32 %183
+  %185 = load float, float addrspace(3)* %184, align 4
+  %186 = fadd fast float %158, %167
+  %187 = fadd fast float %159, %173
+  %188 = fadd fast float %160, %179
+  %189 = fadd fast float %161, %185
+  %190 = fmul fast float %186, 2.500000e-01
+  %191 = fmul fast float %187, 2.500000e-01
+  %192 = fmul fast float %188, 2.500000e-01
+  %193 = fmul fast float %189, 2.500000e-01
+  %194 = fcmp fast ugt float %190, 0x3F69A5C380000000
+  br i1 %194, label %195, label %201, !dx.controlflow.hints !18
+
+; <label>:195                                     ; preds = %56
+  %196 = call float @dx.op.unary.f32(i32 23, float %190)  ; Log(value)
+  %197 = fmul fast float %196, 0x3FDAAAAAA0000000
+  %198 = call float @dx.op.unary.f32(i32 21, float %197)  ; Exp(value)
+  %199 = fmul fast float %198, 0x3FF0E147A0000000
+  %200 = fadd fast float %199, 0xBFAC28F5C0000000
+  br label %203
+
+; <label>:201                                     ; preds = %56
+  %202 = fmul fast float %186, 0x4009D70A40000000
+  br label %203
+
+; <label>:203                                     ; preds = %201, %195
+  %204 = phi float [ %202, %201 ], [ %200, %195 ]
+  %205 = fcmp fast ugt float %191, 0x3F69A5C380000000
+  br i1 %205, label %206, label %212, !dx.controlflow.hints !18
+
+; <label>:206                                     ; preds = %203
+  %207 = call float @dx.op.unary.f32(i32 23, float %191)  ; Log(value)
+  %208 = fmul fast float %207, 0x3FDAAAAAA0000000
+  %209 = call float @dx.op.unary.f32(i32 21, float %208)  ; Exp(value)
+  %210 = fmul fast float %209, 0x3FF0E147A0000000
+  %211 = fadd fast float %210, 0xBFAC28F5C0000000
+  br label %214
+
+; <label>:212                                     ; preds = %203
+  %213 = fmul fast float %187, 0x4009D70A40000000
+  br label %214
+
+; <label>:214                                     ; preds = %212, %206
+  %215 = phi float [ %213, %212 ], [ %211, %206 ]
+  %216 = fcmp fast ugt float %192, 0x3F69A5C380000000
+  br i1 %216, label %217, label %223, !dx.controlflow.hints !18
+
+; <label>:217                                     ; preds = %214
+  %218 = call float @dx.op.unary.f32(i32 23, float %192)  ; Log(value)
+  %219 = fmul fast float %218, 0x3FDAAAAAA0000000
+  %220 = call float @dx.op.unary.f32(i32 21, float %219)  ; Exp(value)
+  %221 = fmul fast float %220, 0x3FF0E147A0000000
+  %222 = fadd fast float %221, 0xBFAC28F5C0000000
+  br label %225
+
+; <label>:223                                     ; preds = %214
+  %224 = fmul fast float %188, 0x4009D70A40000000
+  br label %225
+
+; <label>:225                                     ; preds = %223, %217
+  %226 = phi float [ %224, %223 ], [ %222, %217 ]
+  %227 = lshr i32 %6, 1
+  %228 = lshr i32 %7, 1
+  call void @dx.op.textureStore.f32(i32 67, %dx.types.Handle %1, i32 %227, i32 %228, i32 undef, float %204, float %215, float %226, float %193, i8 15)  ; TextureStore(srv,coord0,coord1,coord2,value0,value1,value2,value3,mask)
+  ret void
+}
+
+; Function Attrs: nounwind readnone
+declare i32 @dx.op.threadId.i32(i32, i32) #0
+
+; Function Attrs: nounwind readnone
+declare i32 @dx.op.threadIdInGroup.i32(i32, i32) #0
+
+; Function Attrs: nounwind readonly
+declare %dx.types.ResRet.f32 @dx.op.sampleLevel.f32(i32, %dx.types.Handle, %dx.types.Handle, float, float, float, float, i32, i32, i32, float) #1
+
+; Function Attrs: nounwind
+declare void @dx.op.textureStore.f32(i32, %dx.types.Handle, i32, i32, i32, float, float, float, float, i8) #2
+
+; Function Attrs: nounwind readnone
+declare float @dx.op.unary.f32(i32, float) #0
+
+; Function Attrs: noduplicate nounwind
+declare void @dx.op.barrier(i32, i32) #3
+
+; Function Attrs: nounwind readonly
+declare %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32, %dx.types.Handle, i32) #1
+
+; Function Attrs: nounwind readonly
+declare %dx.types.Handle @dx.op.createHandle(i32, i8, i32, i32, i1) #1
+
+attributes #0 = { nounwind readnone }
+attributes #1 = { nounwind readonly }
+attributes #2 = { nounwind }
+attributes #3 = { noduplicate nounwind }
+
+!llvm.ident = !{!0}
+!dx.version = !{!1}
+!dx.valver = !{!2}
+!dx.shaderModel = !{!3}
+!dx.resources = !{!4}
+!dx.entryPoints = !{!15}
+
+!0 = !{!"clang version 3.7 (tags/RELEASE_370/final)"}
+!1 = !{i32 1, i32 5}
+!2 = !{i32 1, i32 6}
+!3 = !{!"cs", i32 6, i32 5}
+!4 = !{!5, !8, !11, !13}
+!5 = !{!6}
+!6 = !{i32 0, %"class.Texture2D<vector<float, 4> >"* undef, !"", i32 0, i32 0, i32 1, i32 2, i32 0, !7}
+!7 = !{i32 0, i32 9}
+!8 = !{!9, !10}
+!9 = !{i32 0, %"class.RWTexture2D<vector<float, 4> >"* undef, !"", i32 0, i32 0, i32 1, i32 2, i1 false, i1 false, i1 false, !7}
+!10 = !{i32 1, %"class.RWTexture2D<vector<float, 4> >"* undef, !"", i32 0, i32 1, i32 1, i32 2, i1 false, i1 false, i1 false, !7}
+!11 = !{!12}
+!12 = !{i32 0, %CS_GenerateMips* undef, !"", i32 0, i32 0, i32 1, i32 16, null}
+!13 = !{!14}
+!14 = !{i32 0, %struct.SamplerState* undef, !"", i32 1, i32 11, i32 1, i32 0, null}
+!15 = !{void ()* @GenerateMips, !"GenerateMips", null, !4, !16}
+!16 = !{i32 0, i64 8388864, i32 4, !17}
+!17 = !{i32 8, i32 8, i32 1}
+!18 = distinct !{!18, !"dx.controlflow.hints", i32 2}
+ 
