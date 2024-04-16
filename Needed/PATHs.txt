@@ -1,6 +1,7 @@
 G:\EA
 M:\Ubisoft
 M:\Blizzard
-C:\SSD
+M:\XboxGames
+M:\Games\SSD
+C:\SSDRest
 C:\XboxGames
-X:\Xbox

@@ -19,11 +19,6 @@
                 Discord
             </Hyperlink>
         </TextBlock>
-        <TextBlock Margin="450,10,0,0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" >           
-            <Hyperlink NavigateUri="https://patreon.com/Flugan" RequestNavigate="Hyperlink_RequestNavigate">
-                Patreon
-            </Hyperlink>
-        </TextBlock>
         <TextBlock Margin="600,10,0,0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" >
             <Hyperlink NavigateUri="https://github.com/Flugan/Geo3D-Installer/releases" RequestNavigate="Hyperlink_RequestNavigate">
                 GitHub
