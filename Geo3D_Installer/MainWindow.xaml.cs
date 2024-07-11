@@ -346,6 +346,7 @@ namespace Geo3D_Installer
             System.IO.File.Delete(combinedPath + "\\dxgi.dll");
 
             System.IO.File.Delete(combinedPath + "\\ReShade.log");
+            System.IO.File.Delete(combinedPath + "\\ReShade.log1");
             System.IO.File.Delete(combinedPath + "\\ReShade.log2");
             System.IO.File.Delete(combinedPath + "\\ReShadePreset.ini");
 
