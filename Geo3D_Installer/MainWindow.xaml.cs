@@ -100,7 +100,7 @@ namespace Geo3D_Installer
                     gameListBox.Items.Add(game);
                 }
             }
-            gameCount.Content = "Total Count: " + gameList.Count;
+            gameCount.Content = "Total Count: " + gameListBox.Items.Count;
         }
 
         private void sortGames()
@@ -373,7 +373,6 @@ namespace Geo3D_Installer
             System.IO.File.Delete(combinedPath + "\\SimulatedRealityFacetrackers.dll");
 
             System.IO.File.Delete(combinedPath + "\\DimencoWeaving32.dll");
-            System.IO.File.Delete(combinedPath + "\\Opencv_world343.dll");
             System.IO.File.Delete(combinedPath + "\\SimulatedReality32.dll");
             System.IO.File.Delete(combinedPath + "\\SimulatedRealityCore32.dll");
             System.IO.File.Delete(combinedPath + "\\SimulatedRealityDirectX32.dll");
@@ -392,82 +391,6 @@ namespace Geo3D_Installer
             filterGames();
         }
 
-         private bool popupExplorer = false;
-
-        private void gameListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (popupExplorer)
-            {
-                Game g = (Game)gameListBox.SelectedItem;
-                if (g != null)
-                {
-                    Process.Start(g.path);
-                }
-            }
-        }
-
-        private void popup_Click(object sender, RoutedEventArgs e)
-        {
-            if (popupExplorer)
-            {
-                gameListBox.Items.Clear();
-                foreach (var game in gameList)
-                {
-                    gameListBox.Items.Add(game);
-                }
-                popup.Content = "Filter";
-                popupExplorer = false;
-            }
-            else
-            {
-                gameListBox.Items.Clear();
-                foreach (var game in gameList)
-                {
-                    if (game.exe == "")
-                    {
-                        gameListBox.Items.Add(game);
-                    }
-                }
-                popup.Content = "Popup";
-                popupExplorer = true;
-            }
-        }
-
-        private void exeButton_Click(object sender, RoutedEventArgs e)
-        {
-            int i = 0;
-            foreach (var game in gameList)
-            {
-                if (game.exe == "")
-                    game.Expand();
-                gameCount.Content = "Total Count: " + (++i) + "/" + gameList.Count;
-            }
-            popup.Visibility = Visibility.Visible;
-            if (gameList.Count() != 0) {
-                bool exe = !gameList.First().displayExe;
-                foreach (var game in gameList)
-                {
-                    game.displayExe = exe;
-                }
-            }
-            gameListBox.Items.Clear();
-            foreach (var game in gameList)
-            {
-                if (popupExplorer)
-                {
-                    if (game.exe == "")
-                    {
-                        gameListBox.Items.Add(game);
-                    }
-                }
-                else
-                {
-                    gameListBox.Items.Add(game);
-                }
-            }
-            filterGames();
-        }
-
         private void pathButton_Click(object sender, RoutedEventArgs e)
         {
             if (gameList.Count() != 0)
@@ -481,17 +404,7 @@ namespace Geo3D_Installer
             gameListBox.Items.Clear();
             foreach (var game in gameList)
             {
-                if (popupExplorer)
-                {
-                    if (game.exe == "")
-                    {
-                        gameListBox.Items.Add(game);
-                    }
-                }
-                else
-                {
-                    gameListBox.Items.Add(game);
-                }
+                gameListBox.Items.Add(game);
             }
             filterGames();
         }
@@ -940,6 +853,18 @@ namespace Geo3D_Installer
             {
                 // Update game
                 installGame(game, 0);
+            }
+        }
+
+        private void geo3DBox_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Game g = (Game)gameListBox.SelectedItem;
+            if (g != null)
+            {
+                var fullPath = g.path + "\\" + g.exe;
+                var lastSPass = fullPath.ToString().TrimEnd('\\');
+                var path = fullPath.Substring(0, fullPath.IndexOf(lastSPass));
+                Process.Start(path);
             }
         }
     }

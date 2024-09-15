@@ -151,3 +151,4 @@ aom\AOM_Release_Final.exe
 bin\FarCry5.exe
 System\Win32_x86_Release\Syndicate.exe
 app_digister\Digimon Story CS.exe
+RED\Binaries\Win64\RED-Win64-Shipping.exe
