@@ -146,82 +146,38 @@ namespace Geo3D_Installer
 
             if (xSR.IsChecked == true)
             {
-                bool found = false;
                 if (currentGame.bits == "x86")
                 {
-                    string folder;
-                    while (true)
-                    {
-                        folder = "C:\\Program Files (x86)\\Simulated Reality\\SR Platform\\bin";
-                        if (Directory.Exists(folder))
-                        {
-                            found = true; break;
-                        }
-                        break;
-                    }
-                    if (found)
-                    {
-                        System.IO.File.Copy("srReshade\\srReshade_v0.3.0.addon32", installDir + "\\srReshade_v0.3.0.addon32", true);
-                        System.IO.File.Copy(folder + "\\DimencoWeaving32.dll", installDir + "\\DimencoWeaving32.dll", true);
-                        System.IO.File.Copy(folder + "\\Glog.dll", installDir + "\\Glog.dll", true);
-                        System.IO.File.Copy(folder + "\\Opencv_world343.dll", installDir + "\\Opencv_world343.dll", true);
-                        System.IO.File.Copy(folder + "\\SimulatedReality32.dll", installDir + "\\SimulatedReality32.dll", true);
-                        System.IO.File.Copy(folder + "\\SimulatedRealityCore32.dll", installDir + "\\SimulatedRealityCore32.dll", true);
-                        System.IO.File.Copy(folder + "\\SimulatedRealityDirectX32.dll", installDir + "\\SimulatedRealityDirectX32.dll", true);
-                        System.IO.File.Copy(folder + "\\SimulatedRealityDisplays32.dll", installDir + "\\SimulatedRealityDisplays32.dll", true);
-                        System.IO.File.Copy(folder + "\\SimulatedRealityFacetrackers32.dll", installDir + "\\SimulatedRealityFacetrackers32.dll", true);
-                    }
+                    System.IO.File.Copy("srReshade\\srReshade_v1.0.0.addon32", installDir + "\\srReshade_v1.0.0.addon32", true);
                 }
                 else
                 {
-                    string folder;
-                    while (true)
-                    {
-                        folder = "C:\\Program Files\\Simulated Reality\\SR Platform\\bin";
-                        if (Directory.Exists(folder))
-                        {
-                            found = true; break;
-                        }
-                        folder = "C:\\Program Files\\Simulated Reality\\SDK\\bin";
-                        if (Directory.Exists(folder))
-                        {
-                            found = true; break;
-                        }
-                        folder = "C:\\Program Files\\Acer\\SpatialLabs\\SR Platform\\bin";
-                        if (Directory.Exists(folder))
-                        {
-                            found = true; break;
-                        }
-                        break;
-                    }
-                    if (found)
-                    {
-                        System.IO.File.Copy("srReshade\\srReshade_v0.3.0.addon64", installDir + "\\srReshade_v0.3.0.addon64", true);
-                        System.IO.File.Copy(folder + "\\DimencoWeaving.dll", installDir + "\\DimencoWeaving.dll", true);
-                        System.IO.File.Copy(folder + "\\Glog.dll", installDir + "\\Glog.dll", true);
-                        System.IO.File.Copy(folder + "\\Opencv_world343.dll", installDir + "\\Opencv_world343.dll", true);
-                        System.IO.File.Copy(folder + "\\SimulatedReality.dll", installDir + "\\SimulatedReality.dll", true);
-                        System.IO.File.Copy(folder + "\\SimulatedRealityCore.dll", installDir + "\\SimulatedRealityCore.dll", true);
-                        System.IO.File.Copy(folder + "\\SimulatedRealityDirectX.dll", installDir + "\\SimulatedRealityDirectX.dll", true);
-                        System.IO.File.Copy(folder + "\\SimulatedRealityDisplays.dll", installDir + "\\SimulatedRealityDisplays.dll", true);
-                        System.IO.File.Copy(folder + "\\SimulatedRealityFacetrackers.dll", installDir + "\\SimulatedRealityFacetrackers.dll", true);
-                    }
-                }
-                if (!found)
-                {
-                    MessageBox.Show("Simulated Reality screen is missing");
-                    return;
+                    System.IO.File.Copy("srReshade\\srReshade_v1.0.0.addon64", installDir + "\\srReshade_v1.0.0.addon64", true);
                 }
             }
 
             System.IO.File.WriteAllText(currentGame.path + "\\Geo3D.txt", "");
 
+            var path = currentGame.path;
+            var dirPos = path.LastIndexOf("\\", path.Length - 1, path.Length);
+            var gameName = path.Substring(dirPos + 1);
+
             if (dxVersion != 0)
             {
                 System.IO.File.Copy("ReShade\\3DToElse.fx", installDir + "\\3DToElse.fx", true);
                 System.IO.File.Copy("ReShade\\ReShadePreset.ini", installDir + "\\ReShadePreset.ini", true);
-                if (!System.IO.File.Exists(installDir + "\\ReShade.ini"))
-                    System.IO.File.Copy("ReShade\\ReShade.ini", installDir + "\\ReShade.ini", true);
+                System.IO.File.Copy("ReShade\\ReShade.ini", installDir + "\\ReShade.ini", true);
+                if (xSR.IsChecked == true)
+                {
+                    if (currentGame.bits == "x86")
+                    {
+                        System.IO.File.Copy("srReshade\\srReshade_v1.0.0.addon32", installDir + "\\srReshade_v1.0.0.addon32", true);
+                    }
+                    else
+                    {
+                        System.IO.File.Copy("srReshade\\srReshade_v1.0.0.addon64", installDir + "\\srReshade_v1.0.0.addon64", true);
+                    }
+                }
                 if (xVR.IsChecked == true)
                 {
                     System.IO.File.Copy("VR\\VRExport\\3DToElse.fx", installDir + "\\3DToElse.fx", true);
@@ -345,39 +301,15 @@ namespace Geo3D_Installer
             System.IO.File.Delete(combinedPath + "\\d3d12.dll");
             System.IO.File.Delete(combinedPath + "\\dxgi.dll");
 
+            System.IO.File.Delete(combinedPath + "\\ReShade.ini");
             System.IO.File.Delete(combinedPath + "\\ReShade.log");
             System.IO.File.Delete(combinedPath + "\\ReShade.log1");
             System.IO.File.Delete(combinedPath + "\\ReShade.log2");
             System.IO.File.Delete(combinedPath + "\\ReShadePreset.ini");
 
-            var fi = new FileInfo(combinedPath + "\\dxcompiler.dll");
-            if (fi.Exists && fi.Length == 17107352)
-            {
-                fi.Delete();
-            }
             System.IO.File.Delete(combinedPath + "\\dxil.dll");
             System.IO.File.Delete(combinedPath + "\\VRExport.addon32");
             System.IO.File.Delete(combinedPath + "\\VRExport.addon64");
-
-            System.IO.File.Delete(combinedPath + "\\srReshade_v0.3.0.addon64");
-            System.IO.File.Delete(combinedPath + "\\srReshade_v0.3.0.addon32");
-
-            System.IO.File.Delete(combinedPath + "\\DimencoWeaving.dll");
-            System.IO.File.Delete(combinedPath + "\\Glog.dll");
-            System.IO.File.Delete(combinedPath + "\\Opencv_world343.dll");
-
-            System.IO.File.Delete(combinedPath + "\\SimulatedReality.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedRealityCore.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedRealityDirectX.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedRealityDisplays.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedRealityFacetrackers.dll");
-
-            System.IO.File.Delete(combinedPath + "\\DimencoWeaving32.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedReality32.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedRealityCore32.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedRealityDirectX32.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedRealityDisplays32.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedRealityFacetrackers32.dll");
 
             gameGeo3D.Clear();
             foreach (var game in gameList)

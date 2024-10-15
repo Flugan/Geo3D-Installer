@@ -1,7 +1,11 @@
+
+C:\XboxGames
+C:\Epic
+D:\Epic
+D:\EA
+D:\Ubisoft
+G:\Epic
 G:\EA
 M:\Ubisoft
 M:\Blizzard
 M:\XboxGames
-M:\Games\SSD
-C:\SSDRest
-C:\XboxGames
