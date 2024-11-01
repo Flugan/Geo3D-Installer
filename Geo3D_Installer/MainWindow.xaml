@@ -29,7 +29,8 @@
         <Button x:Name="DX9" Content="DX9" HorizontalAlignment="Left" Margin="521,462,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="DX9_Click" ToolTipService.ToolTip="For playing in DX9 mode"/>
         <Button x:Name="DX10" Content="DX10+" HorizontalAlignment="Left" Margin="521,502,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="DX10_Click" ToolTipService.ToolTip="For playing everything else"/>
         <Button x:Name="DX12" Content="DX12" HorizontalAlignment="Left" Margin="521,542,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="DX12_Click" ToolTipService.ToolTip="Very few DX12 games require this!"/>
-        <CheckBox x:Name="xSR" Content="SR" HorizontalAlignment="Left" Margin="525,118,0,0" VerticalAlignment="Top" ToolTipService.ToolTip="For playing 64-bit games on Simulated Reality monitors, alpha!"/>
+        <CheckBox x:Name="xSR" Content="SR" HorizontalAlignment="Left" Margin="525,118,0,0" VerticalAlignment="Top" ToolTipService.ToolTip="For playing games on Simulated Reality monitors"/>
+        <CheckBox x:Name="xVR" Content="VR" HorizontalAlignment="Left" Margin="525,100,0,0" VerticalAlignment="Top" ToolTipService.ToolTip="For playing VR with VRScreenCap"/>
         <Button x:Name="Refresh" Content="Refresh" HorizontalAlignment="Left" Margin="521,583,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="Refresh_Click" ToolTipService.ToolTip="Refresh all Geo3D games"/>
     </Grid>
 </Window>
