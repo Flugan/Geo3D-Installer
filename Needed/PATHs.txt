@@ -1,5 +1,6 @@
 G:\EA
 G:\Ubisoft
+M:\GOG
 U:\Blizzard
 C:\XboxGames
 X:\Xbox
