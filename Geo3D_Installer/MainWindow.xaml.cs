@@ -208,7 +208,7 @@ namespace Geo3D_Installer
             {
                 if (xSR.IsChecked == true)
                 {
-                    System.IO.File.Copy("srReshade\\srReshade_v1.0.0.addon32", installDir + "\\srReshade_v1.0.0.addon32");
+                    System.IO.File.Copy("srReshade\\srReshade_v1.0.0.addon32", installDir + "\\srReshade_v1.0.0.addon32", true);
                 }
 
                 if (dxVersion == 9)
@@ -285,12 +285,6 @@ namespace Geo3D_Installer
             System.IO.File.Delete(combinedPath + "\\SimulatedRealityDisplays.dll");
             System.IO.File.Delete(combinedPath + "\\SimulatedRealityFacetrackers.dll");
 
-            var reshade = Directory.EnumerateFiles(combinedPath, "reshade*");
-            foreach (var file in reshade)
-            {
-                System.IO.File.Delete(file);
-            }
-
             gameGeo3D.Clear();
             foreach (var game in gameList)
             {
@@ -300,82 +294,6 @@ namespace Geo3D_Installer
                 }
             }
             updateGeo3D();
-            filterGames();
-        }
-
-         private bool popupExplorer = false;
-
-        private void gameListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (popupExplorer)
-            {
-                Game g = (Game)gameListBox.SelectedItem;
-                if (g != null)
-                {
-                    Process.Start(g.path);
-                }
-            }
-        }
-
-        private void popup_Click(object sender, RoutedEventArgs e)
-        {
-            if (popupExplorer)
-            {
-                gameListBox.Items.Clear();
-                foreach (var game in gameList)
-                {
-                    gameListBox.Items.Add(game);
-                }
-                popup.Content = "Filter";
-                popupExplorer = false;
-            }
-            else
-            {
-                gameListBox.Items.Clear();
-                foreach (var game in gameList)
-                {
-                    if (game.exe == "")
-                    {
-                        gameListBox.Items.Add(game);
-                    }
-                }
-                popup.Content = "Popup";
-                popupExplorer = true;
-            }
-        }
-
-        private void exeButton_Click(object sender, RoutedEventArgs e)
-        {
-            int i = 0;
-            foreach (var game in gameList)
-            {
-                if (game.exe == "")
-                    game.Expand();
-                gameCount.Content = "Total Count: " + (++i) + "/" + gameList.Count;
-            }
-            popup.Visibility = Visibility.Visible;
-            if (gameList.Count() != 0) {
-                bool exe = !gameList.First().displayExe;
-                foreach (var game in gameList)
-                {
-                    game.displayExe = exe;
-                }
-            }
-            gameListBox.Items.Clear();
-            foreach (var game in gameList)
-            {
-                if (popupExplorer)
-                {
-                    if (game.exe == "")
-                    {
-                        gameListBox.Items.Add(game);
-                    }
-                }
-                else
-                {
-                    gameListBox.Items.Add(game);
-                }
-            }
             filterGames();
         }
 
@@ -392,17 +310,7 @@ namespace Geo3D_Installer
             gameListBox.Items.Clear();
             foreach (var game in gameList)
             {
-                if (popupExplorer)
-                {
-                    if (game.exe == "")
-                    {
-                        gameListBox.Items.Add(game);
-                    }
-                }
-                else
-                {
-                    gameListBox.Items.Add(game);
-                }
+                gameListBox.Items.Add(game);
             }
             filterGames();
         }
