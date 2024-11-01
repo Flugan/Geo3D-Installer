@@ -146,9 +146,9 @@ namespace Geo3D_Installer
 
             if (dxVersion != 0)
             {
-                System.IO.File.Copy("ReShade\\3DToElse.fx", installDir + "\\3DToElse.fx");
-                System.IO.File.Copy("ReShade\\ReShadePreset.ini", installDir + "\\ReShadePreset.ini");
-                System.IO.File.Copy("ReShade\\ReShade.ini", installDir + "\\ReShade.ini");
+                System.IO.File.Copy("ReShade\\3DToElse.fx", installDir + "\\3DToElse.fx", true);
+                System.IO.File.Copy("ReShade\\ReShadePreset.ini", installDir + "\\ReShadePreset.ini", true);
+                System.IO.File.Copy("ReShade\\ReShade.ini", installDir + "\\ReShade.ini", true);
 
                 if (xVR.IsChecked == true)
                 {
@@ -834,7 +834,7 @@ namespace Geo3D_Installer
             {
                 currentGame.Expand();
                 installGame(currentGame, 12);
-            }           
+            }
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
@@ -844,6 +844,17 @@ namespace Geo3D_Installer
             {
                 // Update game
                 installGame(game, 0);
+            }
+        }
+
+        private void geo3DBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var currentGame = (Game)geo3DBox.SelectedItem;
+            if (currentGame != null)
+            {
+                currentGame.Expand();
+                var path = currentGame.path + "\\" + currentGame.exe;
+                Process.Start(System.IO.Directory.GetParent(path).ToString());
             }
         }
     }

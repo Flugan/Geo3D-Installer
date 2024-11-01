@@ -16,7 +16,7 @@
             </Hyperlink>
         </TextBlock>
         <ListBox x:Name="gameListBox" HorizontalAlignment="Left" Margin="10,51,0,31" Width="500" SelectionChanged="gameListBox_SelectionChanged" ToolTipService.ToolTip="Game list"/>
-        <ListBox x:Name="geo3DBox" Margin="0,51,10,31" HorizontalAlignment="Right" Width="500" ToolTipService.ToolTip="Games with Geo3D"/>
+        <ListBox x:Name="geo3DBox" Margin="0,51,10,31" HorizontalAlignment="Right" Width="500" ToolTipService.ToolTip="Games with Geo3D" MouseDoubleClick="geo3DBox_MouseDoubleClick"/>
         <TextBox x:Name="Search" HorizontalAlignment="Left" Height="23" Margin="60,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" TextChanged="Search_TextChanged" ToolTipService.ToolTip="Search within games/on the left"/>
         <Label x:Name="gameCount" Content="Total Count: 0" HorizontalAlignment="Left" Margin="10,0,0,5" VerticalAlignment="Bottom" Width="123" RenderTransformOrigin="0.504,-1.846"/>
         <Button x:Name="install" Content="Install" HorizontalAlignment="Left" Margin="517,138,0,0" VerticalAlignment="Top" Width="54" Click="install_Click" ToolTipService.ToolTip="Install Geo3D to the selected game on the left" Height="39"/>
