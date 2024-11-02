@@ -11,8 +11,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <TextBlock Margin="307,16,0,0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" >           
-            <Hyperlink NavigateUri="http://flugan.net" RequestNavigate="Hyperlink_RequestNavigate">
-                Flugan.net
+            <Hyperlink NavigateUri="https://discord.gg/kk79BmwdX5" RequestNavigate="Hyperlink_RequestNavigate">
+                Discord
             </Hyperlink>
         </TextBlock>
         <ListBox x:Name="gameListBox" HorizontalAlignment="Left" Margin="10,51,0,31" Width="500" ToolTipService.ToolTip="Game list"/>
