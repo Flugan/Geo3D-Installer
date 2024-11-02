@@ -153,7 +153,6 @@ namespace Geo3D_Installer
                 if (xVR.IsChecked == true)
                 {
                     System.IO.File.Copy("VR\\VRExport\\3DToElse.fx", installDir + "\\3DToElse.fx", true);
-                    System.IO.File.Copy("VR\\VRExport\\ReShade.ini", installDir + "\\ReShade.ini");
                     if (currentGame.bits == "x86")
                     {
                         System.IO.File.Copy("VR\\VRExport\\VRExport.addon32", installDir + "\\VRExport.addon32", true);
@@ -269,21 +268,25 @@ namespace Geo3D_Installer
             System.IO.File.Delete(currentGame.path + "\\Geo3D.txt");
             string combinedPath = Directory.GetParent(currentGame.path + "\\" + currentGame.exe).ToString();
             System.IO.File.Delete(combinedPath + "\\3DToElse.fx");
+            System.IO.File.Delete(combinedPath + "\\VRExport.addon64");
+            System.IO.File.Delete(combinedPath + "\\VRExport.addon32");
+
             System.IO.File.Delete(combinedPath + "\\Geo3D.addon");
+            System.IO.File.Delete(combinedPath + "\\Geo3D.addon64");
+            System.IO.File.Delete(combinedPath + "\\Geo3D.addon32");
+
+            System.IO.File.Delete(combinedPath + "\\srReshade_v1.0.0.addon64");
+            System.IO.File.Delete(combinedPath + "\\srReshade_v1.0.0.addon32");
 
             System.IO.File.Delete(combinedPath + "\\d3d9.dll");
             System.IO.File.Delete(combinedPath + "\\d3d12.dll");
             System.IO.File.Delete(combinedPath + "\\dxgi.dll");
 
-            System.IO.File.Delete(combinedPath + "\\srReshade.addon");
-            System.IO.File.Delete(combinedPath + "\\DimencoWeaving.dll");
-            System.IO.File.Delete(combinedPath + "\\Glog.dll");
-            System.IO.File.Delete(combinedPath + "\\Opencv_world343.dll");
-            System.IO.File.Delete(combinedPath + "\\imulatedReality.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedRealityCore.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedRealityDirectX.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedRealityDisplays.dll");
-            System.IO.File.Delete(combinedPath + "\\SimulatedRealityFacetrackers.dll");
+            System.IO.File.Delete(combinedPath + "\\reshade.log");
+            System.IO.File.Delete(combinedPath + "\\reshade.log2");
+            System.IO.File.Delete(combinedPath + "\\reshade.log3");
+            System.IO.File.Delete(combinedPath + "\\reshade.log4");
+            System.IO.File.Delete(combinedPath + "\\reshadepreset.ini");
 
             gameGeo3D.Clear();
             foreach (var game in gameList)
