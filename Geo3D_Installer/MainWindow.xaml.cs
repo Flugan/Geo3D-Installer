@@ -167,7 +167,7 @@ namespace Geo3D_Installer
             {
                 if (xSR.IsChecked == true)
                 {
-                    System.IO.File.Copy("srReshade\\srReshade_v1.0.0.addon64", installDir + "\\srReshade_v1.0.0.addon64");
+                    System.IO.File.Copy("srReshade\\srReshade_v1.0.0.addon64", installDir + "\\srReshade_v1.0.0.addon64", true);
                 }
                 
                 if (dxVersion == 9)
