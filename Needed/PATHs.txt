@@ -1,6 +1,6 @@
+D:\Ubisoft
+D:\XboxGames
 G:\EA
-G:\Ubisoft
 M:\GOG
-U:\Blizzard
-C:\XboxGames
-X:\Xbox
+M:\Blizzard
+M:\XboxGames

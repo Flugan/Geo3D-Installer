@@ -24,6 +24,7 @@
         <Label Content="Search" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.216,-0.282"/>
         <Label Content="Geo3D is intended for singleplayer games only and may cause bans in multiplayer games." HorizontalAlignment="Left" Margin="590,0,0,0" VerticalAlignment="Bottom"/>
         <Button x:Name="pathButton" Content="Path" HorizontalAlignment="Left" Margin="521,352,0,0" VerticalAlignment="Top" Width="46" Height="40" Click="pathButton_Click" ToolTipService.ToolTip="Show game path"/>
+        <Button x:Name="OpenGL" Content="OpenGL" HorizontalAlignment="Left" Margin="521,422,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="OpenGL_Click" ToolTipService.ToolTip="For playing in OpenGL mode"/>
         <Button x:Name="DX9" Content="DX9" HorizontalAlignment="Left" Margin="521,462,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="DX9_Click" ToolTipService.ToolTip="For playing in DX9 mode"/>
         <Button x:Name="DX10" Content="DX10+" HorizontalAlignment="Left" Margin="521,502,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="DX10_Click" ToolTipService.ToolTip="For playing everything else"/>
         <Button x:Name="DX12" Content="DX12" HorizontalAlignment="Left" Margin="521,542,0,0" VerticalAlignment="Top" Height="24" Width="47" Click="DX12_Click" ToolTipService.ToolTip="Very few DX12 games require this!"/>

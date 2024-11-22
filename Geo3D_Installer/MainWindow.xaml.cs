@@ -175,18 +175,28 @@ namespace Geo3D_Installer
                     System.IO.File.Copy("ReShade\\ReShade64.dll", installDir + "\\d3d9.dll", true);
                     System.IO.File.Delete(installDir + "\\dxgi.dll");
                     System.IO.File.Delete(installDir + "\\d3d12.dll");
+                    System.IO.File.Delete(installDir + "\\opengl32.dll");
                 }
                 else if (dxVersion == 10)
                 {
                     System.IO.File.Copy("ReShade\\ReShade64.dll", installDir + "\\dxgi.dll", true);
                     System.IO.File.Delete(installDir + "\\d3d9.dll");
                     System.IO.File.Delete(installDir + "\\d3d12.dll");
+                    System.IO.File.Delete(installDir + "\\opengl32.dll");
                 }
                 else if (dxVersion == 12)
                 {
                     System.IO.File.Copy("ReShade\\ReShade64.dll", installDir + "\\d3d12.dll", true);
                     System.IO.File.Delete(installDir + "\\d3d9.dll");
                     System.IO.File.Delete(installDir + "\\dxgi.dll");
+                    System.IO.File.Delete(installDir + "\\opengl32.dll");
+                }
+                else if (dxVersion == 15)
+                {
+                    System.IO.File.Copy("ReShade\\ReShade64.dll", installDir + "\\opengl32.dll", true);
+                    System.IO.File.Delete(installDir + "\\d3d9.dll");
+                    System.IO.File.Delete(installDir + "\\dxgi.dll");
+                    System.IO.File.Delete(installDir + "\\d3d12.dll");
                 }
                 else if (dxVersion == 0)
                 {
@@ -196,6 +206,8 @@ namespace Geo3D_Installer
                         System.IO.File.Copy("ReShade\\ReShade64.dll", installDir + "\\d3d9.dll", true);
                     if (System.IO.File.Exists(installDir + "\\d3d12.dll"))
                         System.IO.File.Copy("ReShade\\ReShade64.dll", installDir + "\\d3d12.dll", true);
+                    if (System.IO.File.Exists(installDir + "\\opengl32.dll"))
+                        System.IO.File.Copy("ReShade\\ReShade64.dll", installDir + "\\opengl32.dll", true);
                 }
                 System.IO.File.Copy("Geo3D\\Geo3D.addon64", installDir + "\\Geo3D.addon64", true);
                 System.IO.File.Copy("DXIL\\dxcompiler.dll", installDir + "\\dxcompiler2.dll", true);
@@ -212,11 +224,19 @@ namespace Geo3D_Installer
                 {
                     System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\d3d9.dll", true);
                     System.IO.File.Delete(installDir + "\\dxgi.dll");
+                    System.IO.File.Delete(installDir + "\\opengl32.dll");
                 }
                 else if (dxVersion == 10)
                 {
                     System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\dxgi.dll", true);
                     System.IO.File.Delete(installDir + "\\d3d9.dll");
+                    System.IO.File.Delete(installDir + "\\opengl32.dll");
+                }
+                else if (dxVersion == 15)
+                {
+                    System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\opengl32.dll", true);
+                    System.IO.File.Delete(installDir + "\\d3d9.dll");
+                    System.IO.File.Delete(installDir + "\\dxgi.dll");
                 }
                 else if (dxVersion == 0)
                 {
@@ -224,6 +244,8 @@ namespace Geo3D_Installer
                         System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\dxgi.dll", true);
                     if (System.IO.File.Exists(installDir + "\\d3d9.dll"))
                         System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\d3d9.dll", true);
+                    if (System.IO.File.Exists(installDir + "\\opengl32.dll"))
+                        System.IO.File.Copy("ReShade\\ReShade32.dll", installDir + "\\opengl32.dll", true);
                 }
                 System.IO.File.Copy("Geo3D\\Geo3D.addon32", installDir + "\\Geo3D.addon32", true);
             }
@@ -279,14 +301,17 @@ namespace Geo3D_Installer
             System.IO.File.Delete(combinedPath + "\\d3d9.dll");
             System.IO.File.Delete(combinedPath + "\\d3d12.dll");
             System.IO.File.Delete(combinedPath + "\\dxgi.dll");
+            System.IO.File.Delete(combinedPath + "\\opengl32.dll");
 
             System.IO.File.Delete(combinedPath + "\\dxcompiler2.dll");
             System.IO.File.Delete(combinedPath + "\\dxil2.dll");
 
             System.IO.File.Delete(combinedPath + "\\reshade.log");
+            System.IO.File.Delete(combinedPath + "\\reshade.log1");
             System.IO.File.Delete(combinedPath + "\\reshade.log2");
             System.IO.File.Delete(combinedPath + "\\reshade.log3");
             System.IO.File.Delete(combinedPath + "\\reshade.log4");
+            System.IO.File.Delete(combinedPath + "\\reshade.ini");
             System.IO.File.Delete(combinedPath + "\\reshadepreset.ini");
 
             gameGeo3D.Clear();
@@ -718,7 +743,17 @@ namespace Geo3D_Installer
             sizeWorker.RunWorkerCompleted += size_RunWorkerCompleted;
             sizeWorker.RunWorkerAsync();
         }
-        
+
+        private void OpenGL_Click(object sender, RoutedEventArgs e)
+        {
+            var currentGame = (Game)geo3DBox.SelectedItem;
+            if (currentGame != null)
+            {
+                currentGame.Expand();
+                installGame(currentGame, 15);
+            }
+        }
+
         private void DX9_Click(object sender, RoutedEventArgs e)
         {
             var currentGame = (Game)geo3DBox.SelectedItem;
@@ -785,11 +820,11 @@ namespace Geo3D_Installer
                 display += " (DX9)";
             else if (System.IO.File.Exists(installDir + "\\d3d12.dll"))
                 display += " (DX12)";
+            else if (System.IO.File.Exists(installDir + "\\opengl32.dll"))
+                display += " (OpenGL)";
 
             if (displayPath)
                 display += " (" + path.Replace(@"\SteamApps\Common\", @"\") + ")";
-            if (displayExe)
-                display += " (" + exe + ")";
             return display;
         }
 
