@@ -148,7 +148,8 @@ namespace Geo3D_Installer
             {
                 System.IO.File.Copy("ReShade\\3DToElse.fx", installDir + "\\3DToElse.fx", true);
                 System.IO.File.Copy("ReShade\\ReShadePreset.ini", installDir + "\\ReShadePreset.ini", true);
-                System.IO.File.Copy("ReShade\\ReShade.ini", installDir + "\\ReShade.ini", true);
+                if (!System.IO.File.Exists(installDir + "\\ReShade.ini"))
+                    System.IO.File.Copy("ReShade\\ReShade.ini", installDir + "\\ReShade.ini");
 
                 if (xVR.IsChecked == true)
                 {
@@ -311,7 +312,6 @@ namespace Geo3D_Installer
             System.IO.File.Delete(combinedPath + "\\reshade.log2");
             System.IO.File.Delete(combinedPath + "\\reshade.log3");
             System.IO.File.Delete(combinedPath + "\\reshade.log4");
-            System.IO.File.Delete(combinedPath + "\\reshade.ini");
             System.IO.File.Delete(combinedPath + "\\reshadepreset.ini");
 
             gameGeo3D.Clear();
