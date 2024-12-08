@@ -421,6 +421,10 @@ namespace Geo3D_Installer
                 g = new Game("Command and Conquer Generals Zero Hour", path + @"\Command and Conquer Generals Zero Hour");
                 gameList.Add(g);
             }
+            else if (name == "AFOP")
+            {
+                addGame("Avatar: Frontiers of Pandora", path);
+            }
             else if (name == "AWayOut")
             {
                 addGame("A Way Out", path);

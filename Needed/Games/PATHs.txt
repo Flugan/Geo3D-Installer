@@ -4,4 +4,5 @@ D:\XboxGames
 G:\EA
 M:\GOG
 M:\Blizzard
+M:\Ubisoft
 M:\XboxGames
